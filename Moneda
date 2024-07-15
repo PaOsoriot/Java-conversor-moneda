@@ -1,0 +1,32 @@
+class Moneda {
+    private String base;
+    private String objetivo;
+    private double rate;
+
+    public Moneda(String base, String objetivo, double rate) {
+        this.base = base;
+        this.objetivo = objetivo;
+        this.rate = rate;
+    }
+
+    public String getBase() {
+        return base;
+    }
+
+    public String getObjetivo() {
+        return objetivo;
+    }
+
+    public double getRate() {
+        return rate;
+    }
+
+    @Override
+    public String toString() {
+        return "Moneda{" +
+                "base='" + base + '\'' +
+                ", objetivo='" + objetivo + '\'' +
+                ", rate=" + rate +
+                '}';
+    }
+}
