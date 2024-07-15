@@ -17,7 +17,7 @@ En este conversor solo hay 6 opciones de cambio
 6) Peso Chileno (CLP)    a Peso Argentino (ARS)
 0. Salir.
 
-Por el momento no se cuenta con una opción de conversor a peso Chileno.
+DATO: Por el momento no se cuenta con una opción de conversor a peso Chileno.
 
 
 <h2>Visualización</h2>
