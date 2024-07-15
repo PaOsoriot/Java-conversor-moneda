@@ -15,7 +15,7 @@ En este conversor solo hay 6 opciones de cambio
 4) Peso Chileno (CLP)    a Dólar (USD)           
 5) Peso Chileno (CLP)    a Peso Mexicano (MXN)   
 6) Peso Chileno (CLP)    a Peso Argentino (ARS)
-0) Salir.
+0. Salir.
 
 Por el momento no se cuenta con una opción de conversor a peso Chileno.
 
