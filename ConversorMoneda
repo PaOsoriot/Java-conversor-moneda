@@ -1,0 +1,45 @@
+import com.google.gson.Gson;
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+public class ConversorMoneda {
+    private static final String API_KEY = "a84688f7de896849418d7fdc"; // Tu clave de API
+    private static final String BASE_URL = "https://v6.exchangerate-api.com/v6/";
+
+    public Moneda buscaMoneda(int opcion, double cantidad) throws IOException {
+        String objetivo = switch (opcion) {
+            case 1 -> "KRW";
+            case 2 -> "JPY";
+            case 3 -> "EUR";
+            case 4 -> "USD";
+            case 5 -> "MXN";
+            case 6 -> "ARS";
+            default -> throw new RuntimeException("Opción no válida.");
+        };
+        String base = "CLP";
+
+        URI direccion = URI.create(BASE_URL + API_KEY + "/latest/" + base);
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(direccion)
+                .build();
+        try {
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+            TasaDeCambio data = new Gson().fromJson(response.body(), TasaDeCambio.class);
+            if (data == null || data.getConversionRates() == null || !data.getConversionRates().containsKey(objetivo)) {
+                throw new RuntimeException("La opción no está disponible o la respuesta es inválida.");
+            }
+
+            double rate = data.getConversionRates().get(objetivo);
+            double total = cantidad * rate;
+            return new Moneda(base, objetivo, total);
+        } catch (InterruptedException e) {
+            throw new RuntimeException("Error al realizar el cambio de moneda.", e);
+        }
+    }
+}
